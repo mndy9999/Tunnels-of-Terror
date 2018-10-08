@@ -12,11 +12,13 @@ int main() {
 	g.mapSetup();
 	
 	bool flag = true;
-	while (flag) {
+	while (g.getCurrentRoom().getRoomName() != g.getDestination().getRoomName()) {
 		g.printRoomInfo();
 		g.movePlayer();
+		
 	}
-
+	cout << "Total cost: " << g.GetTotalCost();
+	getchar();
 	getchar();
 	return 0;
 

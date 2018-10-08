@@ -8,7 +8,6 @@ Room::Room(){}
 Room::Room(string n)
 {
 	name = n;
-
 }
 
 void Room::setDirections(Room *n, Room *s, Room *e, Room *w) {

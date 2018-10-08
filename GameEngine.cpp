@@ -9,6 +9,7 @@ GameEngine::GameEngine():df("Nothing"), lb("Library"), mr("Misterious Room"),
 						en("Entrance"), ib("Ice Box")
 {
 	address = &en;
+	currentRoom = *address;
 	cost = 0;
 }
 
@@ -41,6 +42,8 @@ void GameEngine::mapSetup() {
 	ib.setDirections(&kt, &df, &df, &df);
 	ib.setMoveCost(10, 0, 0, 0);
 
+	setDestination(mr);
+
 }
 
 void GameEngine::printRoomInfo() {
@@ -62,13 +65,38 @@ void GameEngine::movePlayer() {
 	}
 	if (currentRoom.getDirection(c) != &df) {
 		address = currentRoom.getDirection(c);
-		cost += currentRoom.getMoveCost(c);
+		addCost(currentRoom.getMoveCost(c));
 		cout << "Cost to date: " << cost << endl << endl;
 	}
 }
 
 //TO DO: 
 //-getCurrentRoom function to check if the destination is reached.
+
+void GameEngine::setDestination(Room d) {
+	destination = d;
+}
+
+Room GameEngine::getDestination() {
+	return destination;
+}
+
+Room GameEngine::getCurrentRoom() {
+	
+	return currentRoom;
+}
+
+void GameEngine::setCurrentRoom(Room r) {
+	currentRoom = r;
+}
+
+int GameEngine::GetTotalCost() {
+	return cost;
+}
+
+void GameEngine::addCost(int c) {
+	cost += c;
+}
 
 GameEngine::~GameEngine()
 {
